@@ -39,7 +39,7 @@ import javax.swing.table.DefaultTableModel;
 import org.jdatepicker.DateModel;
 
 /**
- * This class starts the visual part of the application and programs and manages
+ * This class starts the visual part of the application and programs and manages ESCRIBIBI
  * all the events that it can receive from it. For each event received the
  * controller performs an action.
  *
