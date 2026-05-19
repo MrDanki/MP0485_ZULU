@@ -8,7 +8,7 @@ import java.io.File;
  * @version 1.1.0
  */
 public enum Routes {
-
+    
     APPIMAGES("images", null, null, null, null, null, null, null, null),
     FILE ("File", "Photos", "dataFile.txt", null, null, null, null, null, null),
     FILES ("FileSer", null, "dataFile.ser", null, null, null, null, null, null ),
@@ -41,44 +41,13 @@ public enum Routes {
         this.dbServerTABLE = dbServerTABLE;
     }
 
-    public String getFolderPath() {
-        return folderPath;
-    }
-
-    public String getFolderPhotos() {
-        return folderPhotos;
-    }
-
-    public String getDataFile() {
-        return dataFile;
-    }
-
-    public String getDbServerAddress() {
-        return dbServerAddress;
-    }
-
-    public String getDbServerComOpt() {
-        return dbServerComOpt;
-    }
-
-    public String getDbServerUser() {
-        return dbServerUser;
-    }
-
-    public String getDbServerPassword() {
-        return dbServerPassword;
-    }
-
-    public String getDbServerDB() {
-        return dbServerDB;
-    }
-
-    public String getDbServerTABLE() {
-        return dbServerTABLE;
-    }
-    
-    
-    
-    
-    
+    public String getFolderPath(){return folderPath;}
+    public String getFolderPhotos(){return folderPhotos;}
+    public String getDataFile(){return dataFile;}
+    public String getDbServerAddress() {return dbServerAddress;}
+    public String getDbServerComOpt(){return dbServerComOpt;}
+    public String getDbServerUser(){return dbServerUser;}
+    public String getDbServerPassword(){return dbServerPassword;}
+    public String getDbServerDB(){return dbServerDB;}
+    public String getDbServerTABLE(){return dbServerTABLE;} 
 }
