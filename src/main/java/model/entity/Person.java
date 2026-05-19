@@ -14,6 +14,8 @@ import javax.swing.ImageIcon;
  * @author Fran Perez
  * @version 1.1.0
  */
+// pau 
+//
 @Entity
 public class Person implements Serializable{
 
