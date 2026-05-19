@@ -18,37 +18,56 @@ import javax.swing.ImageIcon;
 public class Person implements Serializable{
 
     @Id 
-    private String nif;
-    private String name;
-    private Date dateOfBirth;
-    private String phoneNumber;
-    private String email;
-    private String postalCode;
+    private String NIF;
+    private String NAME;
+    private Date DATE_OF_BIRTH;
+    private String PHONE_NUMBER;
+    private String EMAIL;
+    private String POSTAL_CODE;
     @Transient
-    private ImageIcon photo;
+    private ImageIcon PHOTO;
     @Lob
-    private byte[] photoOnlyJPA;
+    private byte[] PHOTO_ONLY_JPA;
 
     public Person(){
-        
+  
     }
     
     /**
      * Constructor to validate new person. Two persons cannot have the same NIF
      * @param nif 
      */
-    public Person(String nif) {
-        this.nif = nif;
+    public Person(String nif){
+        this.NIF = nif;
     }
     
     /**
      * Constructor with mandatory data.
      * @author Fran Perez
      * @version 1.0
+     * @param nif
+     * @param name
      */
-    public Person(String name, String nif) {
-        this.name = name;
-        this.nif = nif;
+    public Person(String nif,String name){
+        this.NIF = nif;
+        this.NAME = name;
+     
+    }
+    
+    /**
+     * Constructor with minimal data.
+     * @author Daniel Lop
+     * @version 1.0
+     * @param nif
+     * @param name
+     * @param dateOfBirth
+     * @param photo
+     */
+    public Person(String name,String nif,Date dateOfBirth,ImageIcon photo){
+        this.NAME = name;      
+        this.NIF = nif;
+        this.DATE_OF_BIRTH = dateOfBirth;
+        this.PHOTO = photo;
     }
 
     /**
@@ -59,79 +78,47 @@ public class Person implements Serializable{
      * @param nif
      * @param dateOfBirth
      * @param photo
+     * @param phoneNumber
+     * @param email
+     * @param postalCode
      */
-    public Person(String name, String nif, Date dateOfBirth, ImageIcon photo) {
-        this.name = name;      
-        this.nif = nif;
-        this.dateOfBirth = dateOfBirth;
-        this.photo = photo;
+    public Person(
+            String name,
+            String nif,
+            Date dateOfBirth,
+            ImageIcon photo,
+            String phoneNumber,
+            String email,
+            String postalCode     
+    ){
+        this.NAME = name;      
+        this.NIF = nif;
+        this.DATE_OF_BIRTH = dateOfBirth;
+        this.PHOTO = photo;
+        this.PHONE_NUMBER = phoneNumber;
+        this.EMAIL = email;
+        this.POSTAL_CODE = postalCode;
     }
 
-    //Getters and Setters
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getNif() {
-        return nif;
-    }
-
-    public void setNif(String nif) {
-        this.nif = nif;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
+    // GETTERS
+    public String getNif(){return NIF;}
+    public String getName(){return NAME; }
+    public Date getDateOfBirth(){return DATE_OF_BIRTH;}
+    public String getPhoneNumber(){return PHONE_NUMBER;}
+    public String getEmail(){return EMAIL;}
+    public String getPostalCode(){return POSTAL_CODE;}
+    public ImageIcon getPhoto(){return PHOTO;}
+    public byte[] getPhotoOnlyJPA(){return PHOTO_ONLY_JPA;}
     
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public ImageIcon getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(ImageIcon photo) {
-        this.photo = photo;
-    }
-
-    public byte[] getPhotoOnlyJPA() {
-        return photoOnlyJPA;
-    }
-
-    public void setPhotoOnlyJPA(byte[] photoOnlyJPA) {
-        this.photoOnlyJPA = photoOnlyJPA;
-    }
+    // SETTERS
+    public void setNif(String nif){this.NIF = nif;}
+    public void setName(String name){this.NAME = name;}
+    public void setDateOfBirth(Date dateOfBirth){this.DATE_OF_BIRTH = dateOfBirth;}
+    public void setPhoneNumber(String phoneNumber){this.PHONE_NUMBER = phoneNumber;}
+    public void setEmail(String email){this.EMAIL = email;}
+    public void setPostalCode(String postalCode){this.POSTAL_CODE = postalCode;}
+    public void setPhoto(ImageIcon photo){this.PHOTO = photo;}
+    public void setPhotoOnlyJPA(byte[] photoOnlyJPA){this.PHOTO_ONLY_JPA = photoOnlyJPA;}
         
     /**
      * Function used to compare two Personas. There cannot be two or more people
@@ -141,7 +128,7 @@ public class Person implements Serializable{
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 43 * hash + Objects.hashCode(this.nif);
+        hash = 43 * hash + Objects.hashCode(this.NIF);
         return hash;
     }
 
@@ -174,8 +161,34 @@ public class Person implements Serializable{
      */
     @Override
     public String toString() {
-        return "Person {" + "Name = " + name + ", NIF = " + nif
-                + ", DateOfBirth = " + dateOfBirth + ", Photo = " + (photo!=null) + "}";
+        return "Person {" +
+               "NIF='" + NIF + '\'' +
+               ", NAME='" + NAME + '\'' +
+               ", DATE_OF_BIRTH=" + (DATE_OF_BIRTH != null ? DATE_OF_BIRTH : "null") +
+               ", PHONE_NUMBER='" + PHONE_NUMBER + '\'' +
+               ", EMAIL='" + EMAIL + '\'' +
+               ", POSTAL_CODE='" + POSTAL_CODE + '\'' +
+               ", PHOTO=" + (PHOTO != null) +
+               ", PHOTO_ONLY_JPA=" + (PHOTO_ONLY_JPA != null ? PHOTO_ONLY_JPA.length + " bytes" : "null") +
+               '}';
     }
+
+
+    
+    /**
+     * Function to convert to CSV.
+     * @return 
+     */
+    public String toCSV() {
+        return 
+            NIF+","+
+            NAME+","+
+            (DATE_OF_BIRTH != null ? DATE_OF_BIRTH.getTime() : "null")+","+
+            PHONE_NUMBER+","+
+            EMAIL+","+
+            POSTAL_CODE+","+
+            (PHOTO != null)+","+
+            (PHOTO_ONLY_JPA != null ? PHOTO_ONLY_JPA.length : 0);
+}
 
 }
