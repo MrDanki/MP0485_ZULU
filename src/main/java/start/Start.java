@@ -7,7 +7,7 @@ import view.DataStorageSelection;
 /**
  * This class contains the main method, the entry point to the application.
  * @author Francesc Perez
- * @version 1.1.0
+ * @version 1.1.0 hola
  */
 public class Start {
     
