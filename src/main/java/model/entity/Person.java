@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
  * @author Fran Perez
  * @version 1.1.0
  */
+
 @Entity
 public class Person implements Serializable{
 
@@ -152,8 +153,7 @@ public class Person implements Serializable{
         final Person other = (Person) obj;
         return Objects.equals(this.hashCode(), other.hashCode());
     }
-
-    
+ 
     /**
      * Function sed to show person's inform by console. Only for debugging 
      * pourposes.
@@ -172,8 +172,6 @@ public class Person implements Serializable{
                ", PHOTO_ONLY_JPA=" + (PHOTO_ONLY_JPA != null ? PHOTO_ONLY_JPA.length + " bytes" : "null") +
                '}';
     }
-
-
     
     /**
      * Function to convert to CSV.
