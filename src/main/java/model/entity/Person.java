@@ -21,6 +21,7 @@ public class Person implements Serializable{
     private String nif;
     private String name;
     private Date dateOfBirth;
+    private String postalCode;
     @Transient
     private ImageIcon photo;
     @Lob
