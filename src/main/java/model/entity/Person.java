@@ -57,7 +57,7 @@ public class Person implements Serializable{
     }
     
     /**
-     * Constructor with minimal data.
+     * Constructor with minimal data with photo.
      * @author Daniel Lop
      * @version 1.0
      * @param nif
@@ -71,32 +71,29 @@ public class Person implements Serializable{
         this.DATE_OF_BIRTH = dateOfBirth;
         this.PHOTO = photo;
     }
-
+    
     /**
      * Constructor with all data
      * @author Fran Perez
      * @version 1.0
-     * @param name
      * @param nif
+     * @param name
      * @param dateOfBirth
-     * @param photo
      * @param phoneNumber
      * @param email
      * @param postalCode
      */
-    public Person(
-            String name,
+    public Person( 
             String nif,
+            String name,
             Date dateOfBirth,
-            ImageIcon photo,
             String phoneNumber,
             String email,
             String postalCode     
     ){
-        this.NAME = name;      
         this.NIF = nif;
+        this.NAME = name;       
         this.DATE_OF_BIRTH = dateOfBirth;
-        this.PHOTO = photo;
         this.PHONE_NUMBER = phoneNumber;
         this.EMAIL = email;
         this.POSTAL_CODE = postalCode;
@@ -162,17 +159,17 @@ public class Person implements Serializable{
      * @return 
      */
     @Override
-    public String toString() {
-        return "Person {" +
-               "NIF='" + NIF + '\'' +
-               ", NAME='" + NAME + '\'' +
-               ", DATE_OF_BIRTH=" + (DATE_OF_BIRTH != null ? DATE_OF_BIRTH : "null") +
-               ", PHONE_NUMBER='" + PHONE_NUMBER + '\'' +
-               ", EMAIL='" + EMAIL + '\'' +
-               ", POSTAL_CODE='" + POSTAL_CODE + '\'' +
-               ", PHOTO=" + (PHOTO != null) +
-               ", PHOTO_ONLY_JPA=" + (PHOTO_ONLY_JPA != null ? PHOTO_ONLY_JPA.length + " bytes" : "null") +
-               '}';
+    public String toString(){
+        String nif = NIF+",";
+        String name = NAME+",";
+        String date = DATE_OF_BIRTH+",";
+        String phone = PHONE_NUMBER+",";
+        String email = EMAIL+",";
+        String postal = POSTAL_CODE+",";
+        if(DATE_OF_BIRTH == null){
+            date = "dd/mm/yyyy"+",";
+        }
+        return nif+name+date+phone+email+postal;
     }
 
 
@@ -181,16 +178,17 @@ public class Person implements Serializable{
      * Function to convert to CSV.
      * @return 
      */
-    public String toCSV() {
-        return 
-            NIF+","+
-            NAME+","+
-            (DATE_OF_BIRTH != null ? DATE_OF_BIRTH.getTime() : "null")+","+
-            PHONE_NUMBER+","+
-            EMAIL+","+
-            POSTAL_CODE+","+
-            (PHOTO != null)+","+
-            (PHOTO_ONLY_JPA != null ? PHOTO_ONLY_JPA.length : 0);
-}
+    public String toCSV(){
+        String nif = NIF+",";
+        String name = NAME+",";
+        String date = DATE_OF_BIRTH+",";
+        String phone = PHONE_NUMBER+",";
+        String email = EMAIL+",";
+        String postal = POSTAL_CODE+",";
+        if(DATE_OF_BIRTH == null){
+            date = "dd/mm/yyyy"+",";
+        }
+        return nif+name+date+phone+email+postal+System.lineSeparator();
+    }
 
 }

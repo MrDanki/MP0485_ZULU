@@ -6,6 +6,7 @@ import static utils.DataValidation.isNumber;
 
 import java.awt.dnd.DropTarget;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -17,6 +18,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.jdatepicker.DateModel;
 import org.jdatepicker.JDatePicker;
+import model.entity.Person;
+import model.dao.DAOFile;
 
 /**
  * Interface used to register a person. It is mandatory to enter at least the 
@@ -34,29 +37,12 @@ public class Insert extends javax.swing.JDialog {
         insert.setEnabled(false);
     }
 
-    public JButton getReset() {
-        return reset;
-    }
-
-    public JButton getInsert() {
-        return insert;
-    }
-
-    public JTextField getNam() {
-        return name;
-    }
-
-    public JDatePicker getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public JTextField getNif() {
-        return nif;
-    }
-
-    public JLabel getPhoto() {
-        return photo;
-    }
+    public JButton getReset(){return reset;}
+    public JButton getInsert(){return insert;}
+    public JTextField getNam(){return name;}
+    public JDatePicker getDateOfBirth(){return dateOfBirth;}
+    public JTextField getNif(){return nif;}
+    public JLabel getPhoto(){return photo;}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -250,11 +236,8 @@ public class Insert extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void showInsert() {
-        if (!name.getText().isEmpty() && !nif.isEditable()) {
-            insert.setEnabled(true);
-        } else {
-            insert.setEnabled(false);
-        }
+        if (!name.getText().isEmpty() && !nif.isEditable()){insert.setEnabled(true);}
+        else{insert.setEnabled(false);}
     }
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
@@ -301,7 +284,7 @@ public class Insert extends javax.swing.JDialog {
     }//GEN-LAST:event_photoMouseClicked
 
     private void nifKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nifKeyReleased
-        if (nif.getText().length() == 8) {
+        if(nif.getText().length() == 8){
             nif.setText(calculateNifLetter(nif.getText()));
             nif.setEditable(false);
             showInsert();
@@ -309,7 +292,7 @@ public class Insert extends javax.swing.JDialog {
     }//GEN-LAST:event_nifKeyReleased
 
     private void nifKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nifKeyPressed
-        if (nif.getText().length() == 8) {
+        if(nif.getText().length() == 8){
             evt.consume();
             nif.setText(calculateNifLetter(nif.getText()));
             nif.setEditable(false);
