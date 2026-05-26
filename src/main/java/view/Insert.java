@@ -68,7 +68,6 @@ public class Insert extends javax.swing.JDialog {
         name2 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        dateOfBirth = new org.jdatepicker.JDatePicker();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insert - People v1.1.0");
@@ -222,7 +221,6 @@ public class Insert extends javax.swing.JDialog {
             }
         });
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 400, -1));
-        getContentPane().add(dateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 270, 400, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -318,7 +316,6 @@ public class Insert extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.jdatepicker.JDatePicker dateOfBirth;
     private javax.swing.JButton insert;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
