@@ -83,6 +83,7 @@ public class Insert extends javax.swing.JDialog {
         jTextField1 = new javax.swing.JTextField();
         name1 = new javax.swing.JTextField();
         name2 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insert - People v1.1.0");
@@ -241,6 +242,9 @@ public class Insert extends javax.swing.JDialog {
         });
         getContentPane().add(name2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, -1, -1));
 
+        jLabel7.setText("Drop your file here");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -350,6 +354,7 @@ public class Insert extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField name;
