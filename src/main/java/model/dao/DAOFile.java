@@ -36,10 +36,11 @@ public class DAOFile implements IDAO {
     @Override
     public Person read(Person p) throws Exception {
         Person personToRead = null;
-        FileReader fr;
-        BufferedReader br;
-        fr = new FileReader(Routes.FILE.getDataFile());
-        br = new BufferedReader(fr);
+        
+        File file = new File(System.getProperty("user.dir")+"\\File\\dataFile.txt");
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
+        
         String line;
         line = br.readLine();
         while (line != null) {
@@ -54,7 +55,7 @@ public class DAOFile implements IDAO {
                 if (!data[3].equals("null")) {
                     photo = new ImageIcon(data[3]);
                 }
-                personToRead = new Person(data[0], data[1], date, photo);
+                personToRead = new Person(data[0],data[1],date,photo);
                 break;
             }
             line = br.readLine();
@@ -66,14 +67,15 @@ public class DAOFile implements IDAO {
     @Override
     public ArrayList<Person> readAll() throws FileNotFoundException, IOException, ParseException {
         ArrayList<Person> people = new ArrayList<>();
-        FileReader fr;
-        BufferedReader br;
-        fr = new FileReader(Routes.FILE.getDataFile());
-        br = new BufferedReader(fr);
+        
+        File file = new File(System.getProperty("user.dir")+"\\File\\dataFile.txt");
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
+
         String line;
         line = br.readLine();
         while (line != null) {
-            String data[] = line.split("\t");
+            String data[] = line.split(",");
             Date date = null;
             if (!data[2].equals("null")) {
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -83,20 +85,30 @@ public class DAOFile implements IDAO {
             if (!data[3].equals("null")) {
                 photo = new ImageIcon(data[3]);
             }
-            people.add(new Person(data[0],data[1],date,photo));
+            people.add(new Person(data[0],data[1]));
+            
+            System.out.println(line);
             line = br.readLine();
+            
         }
         br.close();
         return people;
     }
 
     @Override
-    public void insert(Person p) throws IOException {
-        String sep = File.separator;
-        FileWriter fw;
-        BufferedWriter bw;
-        fw = new FileWriter(Routes.FILE.getDataFile(), true);
-        bw = new BufferedWriter(fw);
+    public void insert(Person p)throws IOException{
+        //String sep = File.separator;
+        
+        File file = new File(System.getProperty("user.dir")+"\\File\\dataFile.txt");
+        FileWriter fw = new FileWriter(file,true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        
+        bw.write(p.toCSV());
+        System.out.println("Insert");
+        bw.flush();
+        bw.close();
+        
+        /*
         if (p.getDateOfBirth() != null) {
             DateFormat dateFormat = new SimpleDateFormat("yyy/MM/dd");
             String dateAsString = dateFormat.format(p.getDateOfBirth());
@@ -104,6 +116,7 @@ public class DAOFile implements IDAO {
         } else {
             bw.write(p.getName() + "\t" + p.getNif() + "\t" + "null" + "\t");
         }
+        
         if (p.getPhoto() != null) {
             FileOutputStream out;
             BufferedOutputStream outB;
@@ -128,12 +141,12 @@ public class DAOFile implements IDAO {
         } else {
             bw.write("null" + "\n");
         }
-        bw.flush();
-        bw.close();
+        */
     }
 
     @Override
     public void delete(Person p) throws IOException {
+        /*
         String sep = File.separator;
         RandomAccessFile rafRW;
         rafRW = new RandomAccessFile(Routes.FILE.getDataFile(), "rw");
@@ -155,6 +168,7 @@ public class DAOFile implements IDAO {
         rafRW.setLength(0);
         rafRW.writeBytes(textoNuevo);
         rafRW.close();
+        */
     }
 
     @Override
