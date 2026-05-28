@@ -1,1 +1,2 @@
-Jose	11111111H	null	null
+Fran,52434342T,dd/mm/yyyy,null,null,null,
+Mijail,20393040K,dd/mm/yyyy,null,null,null,

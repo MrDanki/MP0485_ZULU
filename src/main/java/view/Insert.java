@@ -3,9 +3,9 @@ package view;
 import static utils.DataValidation.calculateNifLetter;
 import static utils.DataValidation.isLetter;
 import static utils.DataValidation.isNumber;
-
 import java.awt.dnd.DropTarget;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -17,6 +17,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import org.jdatepicker.DateModel;
 import org.jdatepicker.JDatePicker;
+import model.entity.Person;
+import model.dao.DAOFile;
 
 /**
  * Interface used to register a person. It is mandatory to enter at least the 
@@ -34,29 +36,12 @@ public class Insert extends javax.swing.JDialog {
         insert.setEnabled(false);
     }
 
-    public JButton getReset() {
-        return reset;
-    }
-
-    public JButton getInsert() {
-        return insert;
-    }
-
-    public JTextField getNam() {
-        return name;
-    }
-
-    public JDatePicker getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public JTextField getNif() {
-        return nif;
-    }
-
-    public JLabel getPhoto() {
-        return photo;
-    }
+    public JButton getReset(){return reset;}
+    public JButton getInsert(){return insert;}
+    public JTextField getNam(){return name;}
+    public JDatePicker getDateOfBirth(){return dateOfBirth;}
+    public JTextField getNif(){return nif;}
+    public JLabel getPhoto(){return photo;}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,14 +61,13 @@ public class Insert extends javax.swing.JDialog {
         nif = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        dateOfBirth = new org.netbeans.modules.form.InvalidComponent();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         name1 = new javax.swing.JTextField();
         name2 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insert - People v1.1.0");
@@ -95,11 +79,6 @@ public class Insert extends javax.swing.JDialog {
         insert.setMaximumSize(new java.awt.Dimension(187, 33));
         insert.setMinimumSize(new java.awt.Dimension(187, 33));
         insert.setPreferredSize(new java.awt.Dimension(187, 33));
-        insert.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                insertActionPerformed(evt);
-            }
-        });
         getContentPane().add(insert, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -193,8 +172,6 @@ public class Insert extends javax.swing.JDialog {
         jLabel2.setRequestFocusEnabled(false);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 580, 748, -1));
 
-        getContentPane().add(dateOfBirth, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 264, 400, 22));
-
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("Phone number");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, -1, -1));
@@ -206,13 +183,6 @@ public class Insert extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("Postal Code");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 400, -1, -1));
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 400, -1));
 
         name1.setForeground(new java.awt.Color(204, 204, 204));
         name1.setText("Enter full name");
@@ -245,16 +215,20 @@ public class Insert extends javax.swing.JDialog {
         jLabel7.setText("Drop your file here");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
 
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 400, -1));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void showInsert() {
-        if (!name.getText().isEmpty() && !nif.isEditable()) {
-            insert.setEnabled(true);
-        } else {
-            insert.setEnabled(false);
-        }
+        if (!name.getText().isEmpty() && !nif.isEditable()){insert.setEnabled(true);}
+        else{insert.setEnabled(false);}
     }
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
@@ -301,7 +275,7 @@ public class Insert extends javax.swing.JDialog {
     }//GEN-LAST:event_photoMouseClicked
 
     private void nifKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nifKeyReleased
-        if (nif.getText().length() == 8) {
+        if(nif.getText().length() == 8){
             nif.setText(calculateNifLetter(nif.getText()));
             nif.setEditable(false);
             showInsert();
@@ -309,17 +283,13 @@ public class Insert extends javax.swing.JDialog {
     }//GEN-LAST:event_nifKeyReleased
 
     private void nifKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nifKeyPressed
-        if (nif.getText().length() == 8) {
+        if(nif.getText().length() == 8){
             evt.consume();
             nif.setText(calculateNifLetter(nif.getText()));
             nif.setEditable(false);
             showInsert();
         }
     }//GEN-LAST:event_nifKeyPressed
-
-    private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_insertActionPerformed
 
     private void name1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_name1KeyReleased
         // TODO add your handling code here:
@@ -337,16 +307,15 @@ public class Insert extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_name2KeyTyped
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void nifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nifActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nifActionPerformed
 
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.netbeans.modules.form.InvalidComponent dateOfBirth;
     private javax.swing.JButton insert;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -356,7 +325,7 @@ public class Insert extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField name;
     private javax.swing.JTextField name1;
     private javax.swing.JTextField name2;
