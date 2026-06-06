@@ -12,6 +12,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -117,6 +118,7 @@ public class Insert extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(12, 12, 12, 12);
         getContentPane().add(jLabel1, gridBagConstraints);
 
+        name.setToolTipText("");
         name.setMaximumSize(new java.awt.Dimension(400, 22));
         name.setMinimumSize(new java.awt.Dimension(400, 22));
         name.setPreferredSize(new java.awt.Dimension(400, 22));
@@ -240,6 +242,7 @@ public class Insert extends javax.swing.JDialog {
         getContentPane().add(jLabel2, gridBagConstraints);
 
         dateOfBirth.setMaximumSize(new java.awt.Dimension(350, 22));
+        dateOfBirth.getFormattedTextField().setText("Select a date");
         dateOfBirth.setMinimumSize(new java.awt.Dimension(350, 22));
         dateOfBirth.setPreferredSize(new java.awt.Dimension(350, 22));
         gridBagConstraints = new java.awt.GridBagConstraints();
