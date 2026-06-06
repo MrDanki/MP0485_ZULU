@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import static utils.DataValidation.calculateNifLetter;
 import static utils.DataValidation.isLetter;
 import static utils.DataValidation.isNumber;
@@ -35,6 +36,57 @@ public class Insert extends javax.swing.JDialog {
         DropPhotoListener d = new DropPhotoListener(photo, this);
         DropTarget dropTarget = new DropTarget(photo, d);
         insert.setEnabled(false);
+        
+        this.setNamePlaceHolder();
+        this.setNIFPlaceHolder();
+    }
+    
+    public void setNIFPlaceHolder(){
+        nif.setText("Insert a NIF");
+        nif.setForeground(Color.GRAY);
+
+        // Placeholder con FocusListener
+        nif.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent e) {
+                if (nif.getText().equals("Insert a NIF")) {
+                    nif.setText("");
+                    nif.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(java.awt.event.FocusEvent e) {
+                if (nif.getText().isEmpty()) {
+                    nif.setText("Insert a NIF");
+                    nif.setForeground(Color.GRAY);
+                }
+            }
+        });
+    }
+    
+    public void setNamePlaceHolder(){
+        name.setText("Insert a name");
+        name.setForeground(Color.GRAY);
+
+        // Placeholder con FocusListener
+        name.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent e) {
+                if (name.getText().equals("Insert a name")) {
+                    name.setText("");
+                    name.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(java.awt.event.FocusEvent e) {
+                if (name.getText().isEmpty()) {
+                    name.setText("Insert a name");
+                    name.setForeground(Color.GRAY);
+                }
+            }
+        });
     }
 
     public JButton getReset() {
@@ -193,6 +245,7 @@ public class Insert extends javax.swing.JDialog {
         gridBagConstraints.insets = new java.awt.Insets(24, 12, 12, 12);
         getContentPane().add(jLabel5, gridBagConstraints);
 
+        nif.setToolTipText("");
         nif.setMaximumSize(new java.awt.Dimension(400, 22));
         nif.setMinimumSize(new java.awt.Dimension(400, 22));
         nif.setPreferredSize(new java.awt.Dimension(400, 22));
