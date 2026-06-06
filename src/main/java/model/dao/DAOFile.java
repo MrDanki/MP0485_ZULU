@@ -104,7 +104,7 @@ public class DAOFile implements IDAO {
         BufferedWriter bw = new BufferedWriter(fw);
         
         bw.write(p.toCSV());
-        System.out.println("Insert");
+        System.out.println("Insert: "+p.toString());
         bw.flush();
         bw.close();
         
