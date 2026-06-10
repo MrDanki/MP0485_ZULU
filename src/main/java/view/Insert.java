@@ -380,6 +380,7 @@ public class Insert extends javax.swing.JDialog {
         try {
             DAOFile df = new DAOFile();
             df.insert(new Person(nif.getText(),name.getText()));
+            JOptionPane.showMessageDialog(this,"Person "+name.getText()+" inserted correctly");
         } catch (IOException ex) {
             System.getLogger(Insert.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
