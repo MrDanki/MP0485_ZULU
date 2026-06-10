@@ -41,6 +41,10 @@ public class Insert extends javax.swing.JDialog {
         this.setNIFPlaceHolder();
     }
     
+    public String InsertNIF = "";
+    public String InsertName = "";
+    
+    
     public void setNIFPlaceHolder(){
         nif.setText("Insert a NIF");
         nif.setForeground(Color.GRAY);
@@ -317,6 +321,7 @@ public class Insert extends javax.swing.JDialog {
     }
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
+        this.UpdateInsertData();
         nif.setEditable(true);
         nif.setText("");
         name.setText("");
@@ -378,14 +383,21 @@ public class Insert extends javax.swing.JDialog {
 
     private void insertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertActionPerformed
         try {
+            this.UpdateInsertData();
+            System.out.println("Name: "+InsertName );
             DAOFile df = new DAOFile();
-            df.insert(new Person(nif.getText(),name.getText()));
-            JOptionPane.showMessageDialog(this,"Person "+name.getText()+" inserted correctly");
+            df.insert(new Person(InsertNIF,InsertName));
+            JOptionPane.showMessageDialog(this,"Person "+InsertName+" inserted correctly");
         } catch (IOException ex) {
             System.getLogger(Insert.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
     }//GEN-LAST:event_insertActionPerformed
 
+    public void UpdateInsertData(){
+        InsertNIF = nif.getText();
+        InsertName = name.getText();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdatepicker.JDatePicker dateOfBirth;
     private javax.swing.JButton insert;
