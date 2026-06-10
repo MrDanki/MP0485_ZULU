@@ -45,7 +45,6 @@ public class Insert extends javax.swing.JDialog {
         nif.setText("Insert a NIF");
         nif.setForeground(Color.GRAY);
 
-        // Placeholder con FocusListener
         nif.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent e) {
@@ -69,7 +68,6 @@ public class Insert extends javax.swing.JDialog {
         name.setText("Insert a name");
         name.setForeground(Color.GRAY);
 
-        // Placeholder con FocusListener
         name.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent e) {
