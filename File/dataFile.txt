@@ -1,2 +1,3 @@
 Fran,52434342T,dd/mm/yyyy,null,null,null,
-Mijail,20393040K,dd/mm/yyyy,null,null,null,
+Mijail,20393040K,dd/mm/yyyy,null,null,null,,,dd/mm/yyyy,null,null,null,
+,,dd/mm/yyyy,null,null,null,
