@@ -234,7 +234,7 @@ public class ControllerImplementation implements IController, ActionListener {
             p.setPhoto((ImageIcon) insert.getPhoto().getIcon());
         }
         insert(p);
-        insert.getReset().doClick();
+       
     }
 
     private void handleReadAction() {
